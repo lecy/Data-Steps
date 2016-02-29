@@ -1,0 +1,22 @@
+# Easy Descriptive Statistics
+
+We often want to report basic descriptive statistics on quantitative variables within our study.
+
+Here is a simple line of code to make generating the statistics easy.
+
+```r
+
+t(sapply( dat[ , lapply(dat,class) == "numeric" ], summary ))
+
+```
+
+If you want to paste into excel so that you can make the table pretty, try this:
+
+```r
+options( scipen=8 )
+
+desc.stats <- t(sapply( dat[ , lapply(dat,class) == "numeric" ], summary ))
+
+write.table( desc.stats, "clipboard", sep="\t" )
+
+```
